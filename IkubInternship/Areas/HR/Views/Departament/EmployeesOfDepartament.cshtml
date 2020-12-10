@@ -1,0 +1,95 @@
+﻿@model IEnumerable<IkubInternship.DomainModels.ApplicationUser>
+
+@{
+  ViewBag.Title = "EmployeesOfDepartament";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+  <br />
+  @Html.Partial("_Notifications")
+  <br />
+  @if (Model.Count() == 0)
+  {
+    <h2 class="font-weight-bolder">There is no Employee in @ViewBag.DepName Departament</h2> <br /><br />
+    <div class="form-inline">
+      <div class="col-md-6">
+        <a href="/HR/Employees/Create" class="btn btn-lg btn-block btn-primary">Create New Employee</a>
+      </div>
+      <div class="col-md-6">
+        <a href="/HR/Departament/Details/@ViewBag.DepId" class="btn btn=lg btn-dark"><i class="fas fa-arrow-circle-left"></i> Back to Departament</a>
+      </div>
+    </div>
+    
+  }
+  else
+  {
+    <div class="form-inline">
+      <div class="col-md-6">
+        <h2 class="font-weight-bolder">Employees of @ViewBag.DepName Departament</h2>
+      </div>
+      <div class="col-md-6">
+        <a href="/HR/Departament/Details/@ViewBag.DepId" class="btn btn=lg btn-dark float-right"><i class="fas fa-arrow-circle-left"></i> Back to Departament</a>
+      </div>
+    </div>
+    <br />
+      <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>@Html.DisplayNameFor(x => x.Name)</th>
+            <th>@Html.DisplayNameFor(x => x.LastName)</th>
+            <th>@Html.DisplayNameFor(x => x.Email)</th>
+            <th>Departament</th>
+            <th>@Html.DisplayNameFor(x => x.RemainingPermissions)</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach (var item in Model)
+          {
+            <tr>
+              <td>@item.Name</td>
+              <td>@item.LastName</td>
+              <td>@item.Email</td>
+              <td>@item.EmployeeDep.Name</td>
+              <td>@item.RemainingPermissions</td>
+              <td>
+                @Html.ActionLink("Details", "Details","Employees", new { @depId=item.DepId, @id = item.Id }, null) |
+                @Html.ActionLink("Edit", "Edit","Employees", new { @id = item.Id, @depId=item.DepId }, null) |
+                <button type="button" onclick="AddFormAction('/HR/Employees/Delete/@item.Id?depId=@item.DepId')" data-toggle="modal" data-target="#deleteModal" class="btn-link bg-transparent" style="border:none;">Delete</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+
+      </table>
+  }
+
+</div>
+
+<!--Delete Modal-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Are you sure you want to delete the employee?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <form action="" id="deleteEmployeeForm" method="post">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function AddFormAction(actionUrl) {
+    document.getElementById('deleteEmployeeForm').action = actionUrl;
+  }
+</script>
+

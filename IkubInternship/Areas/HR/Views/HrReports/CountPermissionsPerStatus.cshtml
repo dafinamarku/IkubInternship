@@ -1,0 +1,49 @@
+﻿@model Dictionary<string, int>
+@{
+    ViewBag.Title = "CountPermissionsPerStatus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+  <br />
+  @Html.Partial("_Notifications")
+  <br />
+  <div class="form-row">
+    <div class="col-md-6">
+      <h2 class="font-weight-bolder">Nr of permissions for every status</h2>
+    </div>
+    <div class="col-md-6">
+      <a href="/HR/HrReports/Index" class="btn btn-lg btn-dark float-right"><i class="fas fa-arrow-circle-left"></i> Back to Reports</a>
+    </div>
+  </div>
+  <br />
+  <br />
+  @if (Model == null || Model.Count() == 0)
+  {
+    <p class="font-weight-bolder">There is no permission</p>
+  }
+  else
+  {
+    <table class="table table-hover">
+      <tr>
+        <th>Permission Status</th>
+        <th>Quantity</th>
+      </tr>
+      @foreach (var i in Model)
+      {
+        <tr>
+          <td>
+            @Html.DisplayFor(x => i.Key)
+          </td>
+          <td>
+            @Html.DisplayFor(x => i.Value)
+          </td>
+        </tr>
+      }
+    </table>
+    <br />
+    <a href="/HR/HrReports/CountPermissionsPerStatusPDF" class="btn btn-lg btn-primary text-white"> Export PDF</a>
+  }
+</div>
+
+

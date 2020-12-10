@@ -1,0 +1,16 @@
+C:\Users\user\source\repos\IkubInternship\IkubInternship.ServiceContracts\bin\Debug\IkubInternship.ServiceContracts.dll
+C:\Users\user\source\repos\IkubInternship\IkubInternship.ServiceContracts\bin\Debug\IkubInternship.ServiceContracts.pdb
+C:\Users\user\source\repos\IkubInternship\IkubInternship.ServiceContracts\bin\Debug\IkubInternship.DomainModels.dll
+C:\Users\user\source\repos\IkubInternship\IkubInternship.ServiceContracts\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\user\source\repos\IkubInternship\IkubInternship.ServiceContracts\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\user\source\repos\IkubInternship\IkubInternship.ServiceContracts\bin\Debug\EntityFramework.dll
+C:\Users\user\source\repos\IkubInternship\IkubInternship.ServiceContracts\bin\Debug\IkubInternship.DomainModels.pdb
+C:\Users\user\source\repos\IkubInternship\IkubInternship.ServiceContracts\bin\Debug\IkubInternship.DomainModels.dll.config
+C:\Users\user\source\repos\IkubInternship\IkubInternship.ServiceContracts\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\user\source\repos\IkubInternship\IkubInternship.ServiceContracts\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\user\source\repos\IkubInternship\IkubInternship.ServiceContracts\bin\Debug\EntityFramework.xml
+C:\Users\user\source\repos\IkubInternship\IkubInternship.ServiceContracts\obj\Debug\IkubInternship.ServiceContracts.csprojAssemblyReference.cache
+C:\Users\user\source\repos\IkubInternship\IkubInternship.ServiceContracts\obj\Debug\IkubInternship.ServiceContracts.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\IkubInternship\IkubInternship.ServiceContracts\obj\Debug\IkubInternship.ServiceContracts.csproj.CopyComplete
+C:\Users\user\source\repos\IkubInternship\IkubInternship.ServiceContracts\obj\Debug\IkubInternship.ServiceContracts.dll
+C:\Users\user\source\repos\IkubInternship\IkubInternship.ServiceContracts\obj\Debug\IkubInternship.ServiceContracts.pdb

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<IkubInternship.DomainModels.ApplicationUser>
+@{
+    ViewBag.Title = "LockedOutEmployees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+  <br />
+  @Html.Partial("_Notifications")
+  <br /><br />
+  <h2 class="font-weight-bolder">Lockedout Employees</h2>
+  <br />
+  @if (Model != null)
+  {
+    if (Model.Count() == 0)
+    {
+      <p class="font-weight-bold text-info text-center border border-info bg-light">There is no Lockedout Employee</p>
+    }
+    else
+    {
+      <table class="table table-hover">
+        <tr>
+          <th>Full Name</th>
+          <th></th>
+        </tr>
+        @foreach (var emp in Model)
+        {
+          <tr>
+            <td>@emp.Name @emp.LastName</td>
+            <td>@Html.ActionLink("Unlock", "UnlockEmployee", "Employees", new { @id = emp.Id }, new { @class = "btn btn-sm btn-dark" })</td>
+          </tr>
+        }
+      </table>
+    }
+
+  }
+
+</div>
+

@@ -1,0 +1,51 @@
+﻿@model IkubInternship.DomainModels.ApplicationUser
+@{
+  ViewBag.Title = "Profile";
+}
+
+<style>
+  .container {
+    padding-left: 20%;
+    padding-right: 10%;
+  }
+</style>
+<div class="container">
+  <br />
+  @Html.Partial("_Notifications")
+  <br />
+  <div class="card bg-light" style="width: 60%;">
+    <div class="card-body">
+      <h2 class="card-title font-weight-bolder">@(Model.Name+" "+Model.LastName)</h2>
+      <p>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <b>Username: </b>
+            @Html.DisplayFor(x => x.UserName)
+          </li>
+          <li class="list-group-item">
+            <b>@Html.DisplayNameFor(x=>x.Email): </b>
+            @Html.DisplayFor(x => x.Email)
+          </li>
+          <li class="list-group-item">
+            <b class="float-left">Departament: </b>
+            @if (Model.DepId == null)
+            {
+              <div class="float-left"> No Deprtament</div>
+            }
+            else
+            {
+              @Html.DisplayFor(x => x.EmployeeDep.Name)
+            }
+          </li>
+          <li class="list-group-item">
+            <b>@Html.DisplayNameFor(x => x.RemainingPermissions): </b>
+            @Html.DisplayFor(x => x.RemainingPermissions)
+          </li>
+        </ul>
+      </p>
+
+    </div>
+  </div>
+  <br />
+  <a href="/Account/ChangePassword" class="btn btn-lg btn-dark"><i class="fas fa-key"></i> Change Password</a>
+</div>

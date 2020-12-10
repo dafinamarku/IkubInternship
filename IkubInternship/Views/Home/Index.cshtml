@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+  body{
+    background-color:black;
+  }
+  .btn-outline-light {
+    width: 280px;
+    height: 55px;
+  }
+  .jumbotron {
+    background: linear-gradient(to right, red, blue);
+    color:white;
+
+  }
+</style>
+<div class="jumbotron text-center">
+    <h1>Permission Manager</h1>
+</div>
+
+<div class="container">
+  @if (Request.IsAuthenticated)
+  {
+    if (User.IsInRole("HR"))
+    {
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <a href="/HR/Employees/AllEmployees" class="btn btn-lg btn-outline-light"><i class="fas fa-users"></i> Employees</a>
+        </div>
+        <div class="col-md-4">
+          <a href="/HR/Departament/Departaments" class="btn btn-lg btn-outline-light">Departaments</a>
+        </div>
+        <div class="col-md-4">
+          <a href="/HR/Employees/DeletedEmployees" class="btn btn-lg btn-outline-light"><i class="far fa-trash-alt"></i> Deleted Employees</a>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-md-4">
+          <a href="/Permission/ManagePermissions" class="btn btn-lg btn-outline-light">Manage Permissions</a>
+        </div>
+        <div class="col-md-4">
+          <a href="/HR/Event/Index" class="btn btn-lg btn-outline-light"><i class="far fa-calendar-alt"></i> Manage Events</a>
+        </div>
+        <div class="col-md-4">
+          <a href="/Vacation/Vacations" class="btn btn-lg btn-outline-light"><i class="far fa-smile"></i> Vacations of @DateTime.Now.Year</a>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-md-4">
+          <a href="/HR/HrReports/Index" class="btn btn-lg btn-outline-light">Reports</a>
+        </div>
+        <div class="col-md-4">
+          <a href="/Permission/NrOfPermissions" class="btn btn-lg btn-outline-light">Permissions per year</a>
+        </div>
+        <div class="col-md-4">
+          <a href="/HR/Employees/LockedOutEmployees" class="btn btn-lg btn-outline-light"><i class="fas fa-user-lock"></i> Lockedout Employees</a>
+        </div>
+      </div>
+    }
+    else
+    {
+      if (User.IsInRole("Employee")&&User.IsInRole("Supervisor")==false)
+      {
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <a href="/Permission/MyPermissions" class="btn btn-lg btn-outline-light">MyPermissions</a>
+        </div>
+        <div class="col-md-4">
+          <a href="/Vacation/Vacations" class="btn btn-lg btn-outline-light">Vacations of @DateTime.Now.Year</a>
+        </div>
+      </div>
+      }
+      else //user is in role "Supervisor"
+      {
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <a href="/Permission/MyPermissions" class="btn btn-lg btn-outline-light">MyPermissions</a>
+        </div>
+        <div class="col-md-4">
+          <a href="/Permission/ManagePermissions" class="btn btn-lg btn-outline-light">Manage Permissions</a>
+        </div>
+        <div class="col-md-4">
+          <a href="/Vacation/Vacations" class="btn btn-lg btn-outline-light">Vacations of @DateTime.Now.Year</a>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-md-4">
+          <a href="/Supervisor/SupervisorReports/Index" class="btn btn-lg btn-outline-light">Reports</a>
+        </div>
+        <div class="col-md-4">
+          <a href="/Supervisor/Employee/Index" class="btn btn-lg btn-outline-light"><i class="fas fa-users"></i> Employees</a>
+        </div>
+      </div>
+      }
+    }
+  }
+</div>

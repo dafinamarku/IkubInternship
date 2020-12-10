@@ -1,0 +1,35 @@
+﻿@model IkubInternship.DomainModels.Departament
+@{
+  ViewBag.Title = "Create";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+  <br />
+  <h2 class="font-weight-bolder">Create a New Departament</h2>
+  <br />
+  <div class="container">
+    @using (Html.BeginForm("Create", "Departament", FormMethod.Post))
+    {
+      <div class="form-row">
+        <div class="col-md-6">
+          @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label" })
+          @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+          @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+          @Html.LabelFor(model => model.ParentDepId, htmlAttributes: new { @class = "control-label" })
+          @Html.DropDownListFor(m => m.ParentDepId, ViewBag.ParentDepId as IEnumerable<SelectListItem>, null, htmlAttributes: new { @class = "form-control" })
+        </div>
+      </div>
+      <br />
+      <div class="form-row">
+        @Html.ValidationSummary(null, new { @class = "text-danger" })
+      </div>
+      <div class="form-row justify-content-center">
+        <br />
+        <button type="submit" class="btn btn-lg btn-success">Create</button> &nbsp;&nbsp;
+        @Html.ActionLink("Cancel", "Departaments", "Departament", new { @class = "btn btn-lg btn-light" })
+      </div>
+    }
+  </div>
+</div>

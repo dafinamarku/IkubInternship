@@ -1,0 +1,28 @@
+﻿@model IkubInternship.DomainModels.ApplicationUser
+@{
+  ViewBag.Title = "Restore";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("Restore", "Employees", FormMethod.Post))
+{
+  <div class="container">
+    @Html.HiddenFor(m=>m.Id)
+    <br />
+    @Html.Partial("_Notifications")
+    <br />
+    <h2 class="font-weight-bolder">Restore @Model.Name @Model.LastName</h2>
+    <br /><br />
+    <div class="form-row">
+      <div class="col-md-6">
+        <label class="col-form-label">Choose the departament where you want to restore the employee</label>
+        @Html.DropDownListFor(m => m.DepId, ViewBag.DepartamentId as IEnumerable<SelectListItem>, null, htmlAttributes: new { @class = "form-control" })
+      </div>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-lg btn-success">Restore</button> &nbsp; &nbsp;
+    @Html.ActionLink("Cancel", "DeletedEmployees",null, htmlAttributes: new { @class="btn btn-lg btn-light"})
+  </div>
+}
+
+
+

@@ -1,0 +1,40 @@
+﻿@model IkubInternship.DomainModels.Permission
+
+@{
+    ViewBag.Title = "AskPermission";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container text-center">
+  @using (Html.BeginForm("AskPermission", "Permission", FormMethod.Post))
+  {
+    <br />
+    <h2 class="font-weight-bolder">Ask Permission</h2>
+    <br /><br />
+    <div class="form-row form-row justify-content-center">
+      <div class="col-md-6">
+        @Html.LabelFor(x => x.PermissionDate, htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(x => x.PermissionDate, new { @class = "form-control", @type = "date" })
+        @Html.ValidationMessageFor(x => x.PermissionDate, null, new { @class = "text-danger" })
+      </div>
+    </div>
+    <br />
+    <div class="form-row justify-content-center">
+      <div class="col-md-6">
+        @Html.LabelFor(x => x.ReasonForAsking, htmlAttributes: new { @class = "control-label" })
+        @Html.TextAreaFor(x => x.ReasonForAsking, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.ReasonForAsking, null, new { @class = "text-danger" })
+      </div>
+    </div>
+    <br />
+    <div class="form-row justify-content-center">
+      @Html.ValidationSummary(null, new { @class = "text-danger" })
+    </div>
+    <br />
+    <div class="form-row justify-content-center">
+      <button type="submit" class="btn btn-lg btn-success">Ask Permission</button> &nbsp; &nbsp;
+      @Html.ActionLink("Cancel", "MyPermissions", null, new { @class="btn btn-lg btn-light"})
+    </div>
+  }
+</div>

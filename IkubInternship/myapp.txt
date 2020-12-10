@@ -1,0 +1,52 @@
+2020-11-30 13:48:36,849 [9] ERROR IkubInternship.ServiceLayer.PermissionService - Tried to cancel a non existing permission.
+2020-12-01 01:02:29,055 [9] ERROR IkubInternship.ServiceLayer.ReportsService - Only parameterless constructors and initializers are supported in LINQ to Entities.
+2020-12-01 01:03:24,258 [8] ERROR IkubInternship.ServiceLayer.ReportsService - Only parameterless constructors and initializers are supported in LINQ to Entities.
+2020-12-01 01:13:52,537 [11] ERROR IkubInternship.ServiceLayer.ReportsService - Only parameterless constructors and initializers are supported in LINQ to Entities.
+2020-12-01 01:28:57,596 [12] ERROR IkubInternship.ServiceLayer.ReportsService - Only parameterless constructors and initializers are supported in LINQ to Entities.
+2020-12-01 01:50:37,573 [12] ERROR IkubInternship.ServiceLayer.ReportsService - An error occurred while executing the command definition. See the inner exception for details.
+2020-12-01 12:24:55,436 [46] ERROR IkubInternship.ServiceLayer.ReportsService - An error occurred while executing the command definition. See the inner exception for details.
+2020-12-01 12:25:08,054 [3] ERROR IkubInternship.ServiceLayer.ReportsService - An error occurred while executing the command definition. See the inner exception for details.
+2020-12-02 19:44:02,673 [16] ERROR IkubInternship.ServiceLayer.PermissionService - The specified cast from a materialized 'System.Boolean' type to the 'System.Int32' type is not valid.
+2020-12-02 19:45:46,244 [10] ERROR IkubInternship.ServiceLayer.PermissionService - Tried to insert a Permission for dates that were asked before.
+2020-12-02 19:48:57,651 [12] ERROR IkubInternship.ServiceLayer.PermissionService - Tried to insert a Permission for dates that were asked before.
+2020-12-02 20:06:52,427 [40] ERROR IkubInternship.ServiceLayer.PermissionService - Object reference not set to an instance of an object.
+2020-12-02 20:08:45,313 [38] ERROR IkubInternship.ServiceLayer.PermissionService - Tried to insert a Permission for dates that were asked before.
+2020-12-02 20:08:53,279 [38] ERROR IkubInternship.ServiceLayer.PermissionService - Tried to insert a Permission for dates that were asked before.
+2020-12-07 14:00:11,173 [81] ERROR IkubInternship.ServiceLayer.EmployeeService - LINQ to Entities does not recognize the method 'Boolean IsLockedOut[ApplicationUser,String](Microsoft.AspNet.Identity.UserManager`2[IkubInternship.DomainModels.ApplicationUser,System.String], System.String)' method, and this method cannot be translated into a store expression.
+2020-12-09 22:15:43,547 [34] ERROR IkubInternship.ServiceLayer.EmployeeService - An error occurred while updating the entries. See the inner exception for details.
+2020-12-09 23:28:25,889 [80] ERROR IkubInternship.ServiceLayer.EmployeeService - Tried to access a non existing employee
+2020-12-09 23:31:31,065 [6] ERROR IkubInternship.ServiceLayer.EmployeeService - Can not delete premanently a non existing employee.
+2020-12-09 23:33:35,097 [94] ERROR IkubInternship.ServiceLayer.EmployeeService - Tried to access a non existing employee
+2020-12-09 23:33:35,117 [94] ERROR IkubInternship.ServiceLayer.EmployeeService - Can not delete premanently a non existing employee.
+2020-12-09 23:36:06,702 [94] ERROR IkubInternship.ServiceLayer.EmployeeService - Can not delete premanently a non existing employee.
+2020-12-09 23:38:30,008 [90] ERROR IkubInternship.ServiceLayer.EmployeeService - Can not delete premanently a non existing employee.
+2020-12-10 00:29:32,265 [87] ERROR IkubInternship.ServiceLayer.DepartamentService - Triend to update a deprtament by setting a Departament name that already exists.
+2020-12-10 00:29:59,055 [87] ERROR IkubInternship.ServiceLayer.DepartamentService - Triend to update a deprtament by setting a Departament name that already exists.
+2020-12-10 00:32:55,131 [114] ERROR IkubInternship.ServiceLayer.DepartamentService - Triend to update a deprtament by setting a Departament name that already exists.
+2020-12-10 00:33:36,472 [77] ERROR IkubInternship.ServiceLayer.DepartamentService - Triend to update a deprtament by setting a Departament name that already exists.
+2020-12-10 00:35:18,860 [104] ERROR IkubInternship.ServiceLayer.DepartamentService - Triend to update a deprtament by setting a Departament name that already exists.
+2020-12-10 00:43:25,822 [86] ERROR IkubInternship.ServiceLayer.DepartamentService - Triend to update a deprtament by setting a Departament name that already exists.
+2020-12-10 00:43:31,678 [87] ERROR IkubInternship.ServiceLayer.DepartamentService - Triend to update a deprtament by setting a Departament name that already exists.
+2020-12-10 00:43:40,671 [86] ERROR IkubInternship.ServiceLayer.DepartamentService - Triend to update a deprtament by setting a Departament name that already exists.
+2020-12-10 01:17:07,413 [111] ERROR IkubInternship.ServiceLayer.DepartamentService - Tried to acces a non existing departament
+2020-12-10 01:17:48,973 [109] ERROR IkubInternship.ServiceLayer.DepartamentService - Tried to access employee list of a non existing departament.
+2020-12-10 05:10:26,877 [100] ERROR IkubInternship.ServiceLayer.EmployeeService - Can not delete premanently a non existing employee.
+2020-12-10 05:33:02,791 [120] ERROR IkubInternship.ServiceLayer.DepartamentService - Tried to access employee list of a non existing departament.
+2020-12-10 09:43:21,142 [21] ERROR IkubInternship.ServiceLayer.PermissionService - Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+2020-12-10 09:43:34,730 [83] ERROR IkubInternship.ServiceLayer.PermissionService - Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+2020-12-10 09:43:55,037 [103] ERROR IkubInternship.ServiceLayer.PermissionService - Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+2020-12-10 10:25:15,335 [7] ERROR IkubInternship.ServiceLayer.PermissionService - Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+2020-12-10 10:27:17,447 [15] ERROR IkubInternship.ServiceLayer.PermissionService - Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+2020-12-10 10:29:26,671 [16] ERROR IkubInternship.ServiceLayer.PermissionService - Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+2020-12-10 10:30:12,444 [15] ERROR IkubInternship.ServiceLayer.PermissionService - Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+2020-12-10 10:32:47,552 [15] ERROR IkubInternship.ServiceLayer.PermissionService - Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+2020-12-10 10:39:48,649 [8] ERROR IkubInternship.ServiceLayer.PermissionService - Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+2020-12-10 10:51:20,481 [27] ERROR IkubInternship.ServiceLayer.PermissionService - Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+2020-12-10 10:51:55,784 [30] ERROR IkubInternship.ServiceLayer.PermissionService - Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+2020-12-10 10:52:40,407 [24] ERROR IkubInternship.ServiceLayer.PermissionService - Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+2020-12-10 10:58:33,998 [34] ERROR IkubInternship.ServiceLayer.PermissionService - Tried to insert a Permission for dates that were asked before.
+2020-12-10 11:14:40,181 [33] ERROR IkubInternship.ServiceLayer.PermissionService - Can not view this permission because it doesn't exist.
+2020-12-10 17:05:55,755 [32] ERROR IkubInternship.ServiceLayer.PermissionService - Tried to insert a Permission for dates that were asked before.
+2020-12-10 17:25:38,064 [47] ERROR IkubInternship.ServiceLayer.PermissionService - Tried to insert a Permission for dates that were asked before.
+2020-12-10 17:28:10,668 [41] ERROR IkubInternship.ServiceLayer.PermissionService - Can not view this permission because it doesn't exist.
+2020-12-10 17:29:16,594 [30] ERROR IkubInternship.ServiceLayer.DepartamentService - Triend to insert a deprtament that already exists

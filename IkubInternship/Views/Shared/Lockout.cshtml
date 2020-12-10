@@ -1,0 +1,16 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Locked Out";
+}
+
+<div class="container">
+  <br /><br />
+  <h1 class="font-weight-bolder">Locked out.</h1>
+  <br />
+  <h2 class="text-danger font-weight-bolder">This account has been locked out, please try again later or inform the HR about the lockout.</h2>
+  <br />
+  @Html.ActionLink("Return to Home Page", "Index", "Home",null, new { @class="btn btn-lg btn-light"})
+</div>
+  
+

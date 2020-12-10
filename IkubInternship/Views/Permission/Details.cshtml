@@ -1,0 +1,156 @@
+﻿@model IkubInternship.DomainModels.Permission
+@using Microsoft.AspNet.Identity;
+@{
+  ViewBag.Title = "Details";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+  .container{
+    padding-left:20%;
+    padding-right:10%;
+  }
+</style>
+<div class="container">
+  <br />
+  @Html.Partial("_Notifications")
+  <br />
+  <div class="card bg-light" style="width: 60%;">
+    <div class="card-body">
+      <h2 class="card-title font-weight-bolder">Permission Details</h2>
+      <p>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <b>Asked By: </b>
+            @Html.DisplayFor(x => x.Employee.Name) @Html.DisplayFor(x => x.Employee.LastName)
+          </li>
+          <li class="list-group-item">
+            <b>Departament: </b>
+            @Html.DisplayFor(x => x.Employee.EmployeeDep.Name)
+          </li>
+          <li class="list-group-item">
+            <b>@Html.DisplayNameFor(x => x.PermissionDate): </b>
+            @Model.PermissionDate.ToString("MM/dd/yyyy")
+          </li>
+          @if (Model.Status == "Approved")
+          {
+            <li class="list-group-item text-success font-weight-bold">
+              <b>@Html.DisplayNameFor(x => x.Status): </b>
+              @Html.DisplayFor(x => x.Status)
+            </li>
+          }
+          else if (Model.Status == "Refused")
+          {
+            <li class="list-group-item text-danger font-weight-bold">
+              <b>@Html.DisplayNameFor(x => x.Status): </b>
+              @Html.DisplayFor(x => x.Status)
+            </li>
+          }
+          else
+          {
+            <li class="list-group-item text-secondary font-weight-bold">
+              <b>@Html.DisplayNameFor(x => x.Status): </b>
+              @Html.DisplayFor(x => x.Status)
+            </li>
+          }
+          @if (Model.ReasonForAsking != null)
+          {
+            <li class="list-group-item">
+              <b>@Html.DisplayNameFor(x => x.ReasonForAsking): </b>
+              @Html.DisplayFor(x => x.ReasonForAsking)
+            </li>
+          }
+          @if (Model.ReasonForRefusal != null)
+          {
+            <li class="list-group-item">
+              <b>@Html.DisplayNameFor(x => x.ReasonForRefusal): </b>
+              @Html.DisplayFor(x => x.ReasonForRefusal)
+            </li>
+          }
+        </ul>
+      </p>
+
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    @if ((User.IsInRole("Supervisor") && Model.Status == "Asked" && Model.EmployeeId != User.Identity.GetUserId()) || User.IsInRole("HR") && Model.Status == "Asked")
+    {
+      <div>
+        <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#approveModal">Approve</button> &nbsp;&nbsp;
+      </div>
+
+      <div>
+        <a href="/Permission/RefusePermission/@Model.PermissionId?details=1&manage=@ViewBag.manage" class="btn btn-lg btn-danger">Refuse</a>&nbsp; &nbsp;
+
+      </div>
+
+    }
+    @{
+      TimeSpan ts = Model.PermissionDate - DateTime.Now;
+      var diff = ts.TotalHours;
+    }
+    @if ((User.IsInRole("Employee") && Model.Status == "Asked") && Model.EmployeeId == User.Identity.GetUserId() || (User.IsInRole("Employee") && diff >= 48 && Model.Status == "Approved" && Model.EmployeeId == User.Identity.GetUserId()))
+    {
+      <div>
+        <button type="button" data-toggle="modal" data-target="#cancelModal" class="btn btn-lg btn-danger">Cancel</button>&nbsp; &nbsp;
+      </div>
+    }
+    <br />
+    @if (User.IsInRole("HR"))
+    {
+      @Html.ActionLink("Back To List", "ManagePermissions", "Permission", null, new { @class = "btn btn-lg btn-light border" })
+    }
+    else
+    {
+      if (User.IsInRole("Supervisor") && ViewBag.manage != null)
+      {
+        @Html.ActionLink("Back To List", "ManagePermissions", "Permission", null, new { @class = "btn btn-lg btn-light border" })
+      }
+      else
+      {
+        @Html.ActionLink("Back To List", "MyPermissions", "Permission", null, new { @class = "btn btn-lg btn-light border" })
+      }
+    }
+  </div>
+
+</div>
+
+
+<!--Approve Modal-->
+<div class="modal fade" id="approveModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Are you sure you want to approve this permission?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <form action="/Permission/ApprovePermission/@Model.PermissionId?details=1&manage=@ViewBag.manage" id="approvePermissionForm" method="post">
+            <button type="submit" class="btn btn-success">Approve</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Cancel Modal-->
+<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Are you sure you want to cancel this permission?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <form action="/Permission/CancelPermission/@Model.PermissionId" id="cancelPermissionForm" method="post">
+          <button type="submit" class="btn btn-danger">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@model IkubInternship.ViewModels.ResetPasswordViewModel
+@{
+  ViewBag.Title = "UnlockEmployee";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("UnlockEmployee", "Employees", FormMethod.Post, new { @id=ViewBag.EmployeeId }))
+{
+  <br />
+  <div class="form-row mx-auto" style="width:400px">
+    @Html.Hidden("id", new { @id=ViewBag.EmployeeId})
+    <br />
+    <h2 class="font-weight-bolder">Reset @ViewBag.EmployeeName's password</h2>
+    <br /> <br /> 
+    <h6 class="font-weight-normal">To unlock an employee you have to reset his password.</h6>
+    <br /> <br />
+    <hr style="color:black" />
+    <div class="form-group col-md-12">
+      @Html.LabelFor(temp => temp.NewPassword)
+      @Html.PasswordFor(temp => temp.NewPassword, new { placeholder = "New Password", @class = "form-control" })
+      @Html.ValidationMessageFor(temp => temp.NewPassword, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group col-md-12">
+      @Html.LabelFor(temp => temp.ConfirmNewPassword)
+      @Html.PasswordFor(temp => temp.ConfirmNewPassword, new { placeholder = "Confirm New Password", @class = "form-control" })
+      @Html.ValidationMessageFor(temp => temp.ConfirmNewPassword, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group col-md-12">
+      @Html.ValidationSummary(null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group col-md-12">
+      <button type="submit" class="btn btn-dark">Reset Password</button> &nbsp;
+      <a href="" class="btn btn-light">Cancel</a>
+    </div>
+
+  </div>
+}
+

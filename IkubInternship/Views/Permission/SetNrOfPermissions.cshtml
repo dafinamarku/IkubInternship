@@ -1,0 +1,32 @@
+﻿@model IkubInternship.DomainModels.PermissionsPerYear
+@{
+    ViewBag.Title = "SetNrOfPermissions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+  <br />
+  <h2 class="font-weight-bolder">Nr of Permissions this year</h2>
+  <br />
+  <br />
+  @using (Html.BeginForm("SetNrOfPermissions", "Permission", FormMethod.Post))
+  {
+    <div class="form-row">
+      <div class="col-md-6">
+        @Html.LabelFor(x => x.NrOfPermissions, new { @class = "control-label" })
+        @Html.TextBoxFor(x => x.NrOfPermissions, new { @class = "form-control", @type = "number" })
+        @Html.ValidationMessageFor(x => x.NrOfPermissions, null, new { @class = "text-danger" })
+      </div>
+    </div>
+    <br /> <br />
+    <div class="form-row">
+      @Html.ValidationSummary(null, new { @class = "text-danger" })
+    </div>
+    <br />
+    <div class="form-row">
+      <button type="submit" class="btn btn-lg btn-success">Save</button> &nbsp;&nbsp;
+      @Html.ActionLink("Cancel", "NrOfPermissions", "Permission", null, new { @class = "btn btn-lg btn-light" })
+    </div>
+  }
+</div>
+
+

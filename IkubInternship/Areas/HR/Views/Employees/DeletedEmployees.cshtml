@@ -1,0 +1,97 @@
+﻿@model IkubInternship.ViewModels.DeletedEmployeesViewModel
+@{
+  ViewBag.Title = "DeletedEmployees";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+  <br />
+  <br />
+  @if (Model.DeletedEmployees == null || Model.DeletedEmployees.Count() == 0)
+  {
+    <br />
+    @Html.Partial("_Notifications")
+    <h2 class="font-weight-bolder">There is no Deleted Employee</h2>
+  }
+  else
+  {
+    <div class="form-inline">
+      <div class="col-md-6">
+        <h2 class="font-weight-bolder">List of Deleted Employees</h2>
+      </div>
+      <div class="col-md-6">
+        <a href="/HR/Employees/AllEmployees" class="btn btn-lg btn-dark float-right"><i class="fas fa-arrow-circle-left"></i> Back Employees</a>
+      </div>
+    </div>
+    <br />
+    @Html.Partial("_Notifications")
+    <br />
+    <div class="container">
+      <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Departament</th>
+            <th>Remaining Permisions</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach (var delEmployee in Model.DeletedEmployees)
+          {
+            <tr>
+              <td>@delEmployee.Name</td>
+              <td>@delEmployee.LastName</td>
+              <td>@delEmployee.Email</td>
+              @if (delEmployee.DepId == null)
+              {
+                <td>No Departament</td>
+              }
+              else
+              {
+                <td>@delEmployee.EmployeeDep.Name</td>
+              }
+              <td>@delEmployee.RemainingPermissions</td>
+              <td>
+                @Html.ActionLink("Details", "Details", new { @id = delEmployee.Id }) |
+                @Html.ActionLink("Restore", "Restore", new { @id = delEmployee.Id }) |
+                <button type="button" onclick="AddFormAction('/HR/Employees/PermanentlyDelete/@delEmployee.Id')" data-toggle="modal" data-target="#deleteModal" class="btn-link bg-transparent" style="border:none;">Delete</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+
+      </table>
+    </div>
+  }
+
+</div>
+
+<!--Delete Modal-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">This action will permanently delete the employee.</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <form action="" id="deleteEmployeeForm" method="post">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function AddFormAction(actionUrl) {
+    document.getElementById('deleteEmployeeForm').action = actionUrl;
+  }
+</script>

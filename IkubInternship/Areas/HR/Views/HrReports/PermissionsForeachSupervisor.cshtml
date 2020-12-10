@@ -1,0 +1,51 @@
+﻿@model IEnumerable<IkubInternship.DomainModels.VM.EmployeePermission>
+@{
+    ViewBag.Title = "PermissionsForeachSupervisor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+  <br />
+  @Html.Partial("_Notifications")
+  <br />
+  <div class="form-row">
+    <div class="col-md-6">
+      <h2 class="font-weight-bolder">Report for supervisors</h2>
+    </div>
+    <div class="col-md-6">
+      <a href="/HR/HrReports/Index" class="btn btn-lg btn-dark float-right"><i class="fas fa-arrow-circle-left"></i> Back to Reports</a>
+    </div>
+  </div>
+  <br />
+  <br />
+  @if (Model == null || Model.Count() == 0)
+  {
+    <p class="font-weight-bolder">There is no employee record</p>
+  }
+  else
+  {
+    <table class="table table-hover">
+      <tr>
+        <th>@Html.DisplayNameFor(x => x.FullName)</th>
+        <th>@Html.DisplayNameFor(x => x.Remaining)</th>
+        <th>@Html.DisplayNameFor(x => x.Approved)</th>
+        <th>@Html.DisplayNameFor(x => x.Refused)</th>
+        <th>@Html.DisplayNameFor(x => x.Asked)</th>
+        <th>@Html.DisplayNameFor(x => x.Canceled)</th>
+      </tr>
+      @foreach (var i in Model)
+      {
+        <tr>
+          <td>@Html.DisplayFor(x => i.FullName)</td>
+          <td>@Html.DisplayFor(x => i.Remaining)</td>
+          <td>@Html.DisplayFor(x => i.Approved)</td>
+          <td>@Html.DisplayFor(x => i.Refused)</td>
+          <td>@Html.DisplayFor(x => i.Asked)</td>
+          <td>@Html.DisplayFor(x => i.Canceled)</td>
+        </tr>
+      }
+    </table>
+    <br />
+    <a href="/HR/HrReports/PermissionsForeachSupervisorToExcel" class="btn btn-lg btn-success text-white">Export as Excel</a>
+  }
+</div>
+

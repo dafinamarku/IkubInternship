@@ -1,0 +1,16 @@
+C:\Users\user\source\repos\IkubInternship\IkubInternship.DomainModels\bin\Debug\IkubInternship.DomainModels.dll.config
+C:\Users\user\source\repos\IkubInternship\IkubInternship.DomainModels\bin\Debug\IkubInternship.DomainModels.dll
+C:\Users\user\source\repos\IkubInternship\IkubInternship.DomainModels\bin\Debug\IkubInternship.DomainModels.pdb
+C:\Users\user\source\repos\IkubInternship\IkubInternship.DomainModels\bin\Debug\EntityFramework.dll
+C:\Users\user\source\repos\IkubInternship\IkubInternship.DomainModels\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\user\source\repos\IkubInternship\IkubInternship.DomainModels\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\user\source\repos\IkubInternship\IkubInternship.DomainModels\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\user\source\repos\IkubInternship\IkubInternship.DomainModels\bin\Debug\EntityFramework.xml
+C:\Users\user\source\repos\IkubInternship\IkubInternship.DomainModels\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\user\source\repos\IkubInternship\IkubInternship.DomainModels\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\user\source\repos\IkubInternship\IkubInternship.DomainModels\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\user\source\repos\IkubInternship\IkubInternship.DomainModels\obj\Debug\IkubInternship.DomainModels.csprojAssemblyReference.cache
+C:\Users\user\source\repos\IkubInternship\IkubInternship.DomainModels\obj\Debug\IkubInternship.DomainModels.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\IkubInternship\IkubInternship.DomainModels\obj\Debug\IkubInternship.DomainModels.csproj.CopyComplete
+C:\Users\user\source\repos\IkubInternship\IkubInternship.DomainModels\obj\Debug\IkubInternship.DomainModels.dll
+C:\Users\user\source\repos\IkubInternship\IkubInternship.DomainModels\obj\Debug\IkubInternship.DomainModels.pdb

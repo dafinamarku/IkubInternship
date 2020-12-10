@@ -1,0 +1,52 @@
+﻿@model IkubInternship.ViewModels.PickSupervisorViewModel
+@{
+    ViewBag.Title = "PickupSupervisorForDepartament";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+  <br />
+  @Html.Partial("_Notifications")
+  <br />
+  <h2 class="font-weight-bolder">Pickup Supervisor For @ViewBag.DepartamentName Departament</h2>
+  <br />
+  @if (Model.EmployeesOfDepartament.Count() == 0)
+  {
+    <div class="text-center">
+      <p class="font-weight-bolder">There is no employee in this departament.</p>
+      <br />
+      @Html.ActionLink("Create a new employee", "Create", "Employees", null, new { @class = "btn btn-lg btn-block btn-primary" })
+    </div>
+
+  }
+  else
+  {
+    using (Html.BeginForm("PickupSupervisorForDepartament", "Departament", new { @depId = (int)ViewBag.DepartamentId, @depName = ViewBag.DepartamentName }, FormMethod.Post))
+    {
+      <p>Select the employee that you want to mark as supervisor. If you do not select one, then the departament will have no supervisor. </p>
+      <br />
+      <ul>
+        @for(int i=0; i<Model.EmployeesOfDepartament.Count(); i++)
+        {
+          <li style="font-size:larger">
+            @Html.CheckBoxFor(x => Model.EmployeesOfDepartament[i].IsSelected)
+            @Html.DisplayFor(x => Model.EmployeesOfDepartament[i].FullName)
+            @Html.HiddenFor(x => Model.EmployeesOfDepartament[i].Id)
+            @Html.HiddenFor(x => Model.EmployeesOfDepartament[i].FullName)
+          </li>
+        }
+      </ul>
+      @Html.ValidationMessageFor(m => m.EmployeesOfDepartament, "", new { @class = "text-danger" })
+      <br />
+      @Html.ValidationSummary(null, new { @class = "text-danger" })
+      <br />
+      <div>
+        <button type="submit" class="btn btn-lg btn-dark">Save</button> &nbsp;&nbsp;
+        <a href="/HR/Departament/Details/@ViewBag.DepartamentId" class="btn btn-lg btn-light">Cancel</a>
+      </div>
+    }
+
+  }
+
+</div>
+
+

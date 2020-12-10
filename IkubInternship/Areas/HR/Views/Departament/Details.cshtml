@@ -1,0 +1,61 @@
+﻿@model IkubInternship.DomainModels.Departament
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+  <br />
+  @Html.Partial("_Notifications")
+  <br />
+  <h2 class="font-weight-bolder">Details of @Model.Name Departament</h2>
+  <br />
+  <br />
+  <table class="table table-hover">
+    <tr>
+      <th>@Html.DisplayNameFor(x => x.Name):</th>
+      <td>@Html.DisplayFor(x => x.Name)</td>
+    </tr>
+    @if (Model.ParentDepId != null)
+    {
+      <tr>
+        <th>ParentDepartament:</th>
+        <td>@Html.DisplayFor(x => x.ParentDep.Name)</td>
+      </tr>
+    }
+    else
+    {
+      <tr>
+        <th>This departament has no parent departament.</th>
+        <td>@Html.ActionLink("Pick up a parent", "Edit", new { @id = Model.DepartamentId }, new { @class = "btn btn-block btn-warning text-white" })</td>
+      </tr>
+    }
+    @if (ViewBag.HasSupervisor == false)
+    {
+      <tr>
+        <th>This departament has no supervisor.</th>
+        <td>@Html.ActionLink("Pick up a supervisor", "PickupSupervisorForDepartament", "Departament", new { @id = Model.DepartamentId }, new { @class = "btn btn-block btn-dark" })</td>
+      </tr>
+    }
+    else
+    {
+      <tr>
+        <th>Supervisor:</th>
+        <td>@ViewBag.SupervisorName</td>
+      </tr>
+    }
+  </table>
+  <br />
+  @Html.ActionLink("Employees of this departament", "EmployeesOfDepartament", new { @id=Model.DepartamentId}, new { @class="btn btn-block btn-primary"})
+  @if(ViewBag.HasSupervisor== true)
+  {
+    <br />
+    @Html.ActionLink("Change the supervisor", "PickupSupervisorForDepartament", "Departament", new { @id = Model.DepartamentId }, new { @class = "btn btn-block btn-dark" })
+  }
+  <br />
+  <div class="text-center">
+    @Html.ActionLink("Edit", "Edit", new { @id=Model.DepartamentId}, new { @class="btn btn-lg btn-warning text-white"}) &nbsp; &nbsp;
+    @Html.ActionLink("Back to List", "Departaments", "Departament", new { @class="btn btn-lg btn-light"})
+  </div>
+</div>
+
+

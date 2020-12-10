@@ -1,0 +1,68 @@
+﻿@model IkubInternship.DomainModels.ApplicationUser
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+  <br />
+  <h2 class="font-weight-bolder">@Model.Name @Model.LastName's Details</h2>
+  <br />
+  <br />
+  <table class="table table-hover">
+    <tr>
+      <th>@Html.DisplayNameFor(x => x.Name): </th>
+      <td>@Html.DisplayFor(x => x.Name)</td>
+    </tr>
+    <tr>
+      <th>@Html.DisplayNameFor(x => x.LastName): </th>
+      <td>@Html.DisplayFor(x => x.LastName)</td>
+    </tr>
+    <tr>
+      <th>@Html.DisplayNameFor(x => x.UserName): </th>
+      <td>@Html.DisplayFor(x => x.UserName)</td>
+    </tr>
+    <tr>
+      <th>@Html.DisplayNameFor(x => x.Email): </th>
+      <td>@Html.DisplayFor(x => x.Email)</td>
+    </tr>
+    <tr>
+      <th>@Html.DisplayNameFor(x => x.EmployeeDep.Name): </th>
+      <td>@Html.DisplayFor(x => x.EmployeeDep.Name)</td>
+    </tr>
+    <tr>
+      <th>@Html.DisplayNameFor(x => x.RemainingPermissions): </th>
+      <td>@Html.DisplayFor(x => x.RemainingPermissions)</td>
+    </tr>
+    @if (Model.DeleteStatus == false)
+    {
+      if (Model.isSupervisor == true)
+      {
+        <tr>
+          <th>@Model.Name @Model.LastName is the supervisor of @Model.EmployeeDep.Name Departament.</th>
+        </tr>
+      }
+    }
+  </table>
+  @if (Model.DeleteStatus == false)
+  {
+  <div class="text-center">
+    <br />
+    @Html.ActionLink("Edit", "Edit", "Employees", new { @id = Model.Id }, htmlAttributes: new { @class = "btn btn-lg btn-warning text-white" }) &nbsp;&nbsp;
+    @Html.ActionLink("Back to List", "Cancel", "Employees", new { @depId = ViewBag.depId }, new { @class = "btn btn-lg btn-light" })
+  </div>
+  }
+  else
+  {
+    <div class="text-center">
+      <br />
+      <br />
+      @Html.ActionLink("Restore", "Restore", "Employees", new { @id = Model.Id }, htmlAttributes: new { @class = "btn btn-lg btn-success" }) &nbsp;&nbsp;
+      @Html.ActionLink("Back to Deleted Employees", "DeletedEmployees", "Employees", new { @class = "btn btn-lg btn-light" }) 
+
+    </div>
+  }
+
+
+</div>
+
+

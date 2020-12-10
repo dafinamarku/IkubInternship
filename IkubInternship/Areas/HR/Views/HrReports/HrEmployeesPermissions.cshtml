@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "HrEmployeesPermissions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+  $(document).ready(() => {
+    LoadData("", "", "", "");
+  });
+</script>
+<div class="container">
+  <br />
+  <br />
+
+  <div class="row">
+    <div class="col-md-3">
+      <lebel class="control-label">Departament</lebel>
+      <input type="text" id="depName" name="depName" class="form-control" placeholder="Departament" />
+    </div>
+    <div class="col-md-3">
+      <lebel class="control-label">Employee name</lebel>
+      <input type="text" id="employeeName" name="employeeName" class="form-control" placeholder="Full Name" />
+    </div>
+    <div class="col-md-3">
+      <lebel class="control-label">From date</lebel>
+      <input type="date" id="fromDate" name="fromDate" class="form-control" />
+      <p id="fromDateError" class="text-danger"></p>
+    </div>
+    <div class="col-md-3">
+      <lebel class="control-label">To date</lebel>
+      <input type="date" id="toDate" name="toDate" class="form-control" />
+      <p id="toDateError" class="text-danger"></p>
+    </div>
+    <div class="col-md-3">
+      <button type="button" class=" btn btn-info" id="filterButton" onclick="filterClick()">Filter</button>
+    </div>
+  </div>
+  <br />
+  <br />
+  <div class="form-row">
+    <div class="col-md-6">
+      <h2 class="font-weight-bolder">Employees Permissions</h2>
+    </div>
+    <div class="col-md-6">
+      <a href="/HR/HrReports/Index" class="btn btn-lg btn-dark float-right"><i class="fas fa-arrow-circle-left"></i> Back to Reports</a>
+    </div>
+  </div>
+  <br />
+  <table class="table table-hover" id="table"></table>
+  <br /><br />
+  <script>
+
+  </script>
+  <div>
+    <a href="/HR/HrReports/HrEmployeesPermissionsToExcel?depName=&fromDate=&toDate=&employeeName=" id="exportExcel" class="btn btn-lg btn-success text-white">Export as Ecxel</a>&nbsp;&nbsp;
+    <a href="/HR/HrReports/HrEmployeesPermissionsToPDF?depName=&fromDate=&toDate=&employeeName=" id="exportPDF" class="btn btn-lg btn-primary text-white">Export PDF</a>
+  </div>
+  <br /><br />
+</div>
+<script>
+ 
+  function filterClick() {
+    document.getElementById("fromDateError").innerHTML = "";
+    document.getElementById("toDateError").innerHTML = "";
+    var fromDate = new Date(document.getElementById("fromDate").value);
+    var toDate = new Date(document.getElementById("toDate").value);
+    var currentDate = new Date();
+    var errors = 0;
+    if (fromDate.getTime() == fromDate.getTime() && fromDate.getFullYear() != currentDate.getFullYear()) {
+      document.getElementById("fromDateError").innerHTML = "-From Date must be part of " + currentDate.getFullYear().toString() + ".<br />";
+      errors++;
+    }
+    if (toDate.getTime() == toDate.getTime() && toDate.getFullYear() != currentDate.getFullYear()) {
+      document.getElementById("toDateError").innerHTML = "-To Date must be part of " + currentDate.getFullYear().toString() + ".<br />";
+      errors++;
+    }
+    if (fromDate.getTime() == fromDate.getTime() && toDate.getTime() == toDate.getTime() ) {
+      if (fromDate.getTime() > toDate.getTime()) {
+        $('#fromDateError').append("-From Date must be greater then To Date.");
+        errors++;
+      }
+    }
+
+    if (errors == 0) {
+      var depName = document.getElementById("depName").value;
+      var employeeName = document.getElementById("employeeName").value;
+      var date1=""; 
+      if (fromDate.getTime() == fromDate.getTime())
+        date1 = fromDate.toJSON();
+      var date2="";
+      if (toDate.getTime() == toDate.getTime())
+        date2 = toDate.toJSON();
+      $("#exportExcel").attr("href", "/HR/HrReports/HrEmployeesPermissionsToExcel?depName=" + depName + "&fromDate=" + date1 + "&toDate=" + date2 + "&employeeName=" + employeeName);
+      $("#exportPDF").attr("href", "/HR/HrReports/HrEmployeesPermissionsToPDF?depName=" + depName + "&fromDate=" + date1 + "&toDate=" + date2 + "&employeeName=" + employeeName);
+      LoadData(depName, date1, date2, employeeName);
+    }
+  }
+
+  function LoadData(depName, fromDate, toDate, employeeName) {
+    $.ajax({
+      type: "GET",
+      url: "/api/ApiReport",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      data: { "depName": depName, "fromDate": fromDate, "toDate": toDate, "employeeName": employeeName },
+      success: (response) => {
+        $("#table").empty();
+        $("#table").append("  <tr><th> Full Name</th> <th>Departament</th><th>Permission Date</th> <th>Permission Status</th></tr>");
+        for (var i = 0; i < response.length; i++) {
+          var br = response[i];
+          var str = "<tr><td>" + br.FullName + "</td> <td>" + br.Departament + "</td><td>" + br.PermissionDate.toString().substring(5, 7) + "-" + br.PermissionDate.toString().substring(8, 10) + "-" + br.PermissionDate.toString().substring(0, 4)
+            + "</td><td>" + br.PermissionStatus + "</td></tr>";
+          $("#table").append(str);
+        }
+      }, error: (err) => {
+        alert(err);
+        console.log(err);
+      }
+    });
+  }
+</script>

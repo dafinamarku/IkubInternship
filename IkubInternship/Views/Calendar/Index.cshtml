@@ -1,0 +1,50 @@
+﻿
+@{
+  ViewBag.Title = "Index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+  window.onload = function () {
+    myFunction();
+  }
+  function myFunction() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: 'prevYear,prev,next,nextYear today',
+        center: 'title',
+        right: 'dayGridMonth,dayGridWeek,dayGridDay'
+      },
+      initialDate: '2020-09-12',
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      dayMaxEvents: true
+    });
+
+    calendar.render();
+  }
+
+
+</script>
+<style>
+
+
+  #calendar {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+</style>
+<div class="container">
+  <br />
+  <h2 class="font-weight-bolder">Calendar</h2>
+  <br />
+  <div id="calendar">
+
+  </div>
+</div>
+
+
+
+

@@ -1,0 +1,90 @@
+﻿@model IEnumerable<IkubInternship.DomainModels.Permission>
+@{
+  ViewBag.Title = "MyPermissions";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+  <br />
+  @Html.Partial("_Notifications")
+  <br />
+  <h2 class="font-weight-bolder">My Permissions</h2>
+  <br />
+  <div>
+    @Html.ActionLink("Ask Permission", "AskPermission", "Permission", null, new { @class = "btn btn-lg btn-success" })
+    <a href="/Home/Index" class="btn btn-lg btn-dark float-right"><i class="fas fa-home"></i></a>
+  </div>
+  <br /><br />
+ 
+  @if (Model.Count() == 0||Model==null)
+  {
+    <p class="font-weight-bolder text-center">0 Permissions Asked</p>
+  }
+  else
+  {
+    <table class="table table-hover">
+      <tr>
+        <th>@Html.DisplayNameFor(x => x.PermissionDate)</th>
+        <th>@Html.DisplayNameFor(x => x.Status)</th>
+        <th>Actions</th>
+      </tr>
+      @foreach (var permission in Model)
+      {
+      <tr>
+        <td>
+          @permission.PermissionDate.ToString("MM/dd/yyyy")
+        </td>
+        @if (permission.Status == "Refused")
+        {
+        <td class="text-danger font-weight-bold">@Html.DisplayFor(x => permission.Status)</td>
+        }
+        else if (permission.Status == "Approved")
+        {
+        <td class="text-success font-weight-bold">@Html.DisplayFor(x => permission.Status)</td>
+        }
+        else
+        {
+        <td class="font-weight-bold text-secondary">@Html.DisplayFor(x => permission.Status)</td>
+        }
+        <td>
+          @Html.ActionLink("Details", "Details", "Permission", new { @id = permission.PermissionId }, null)
+          @{
+            TimeSpan ts = permission.PermissionDate - DateTime.Now;
+            var diff = ts.TotalHours;
+          }
+          @if (permission.Status == "Asked" || (permission.Status == "Approved" && diff >= 48))
+          {
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#cancelModal" onclick="AddFormAction('/Permission/CancelPermission/@permission.PermissionId')">Cancel</button>
+          }
+        </td>
+      </tr>
+      }
+    </table>
+  }
+
+</div>
+
+<!--Cancel Modal-->
+<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Are you sure you want to cancel the permission?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <form action="" id="cancelPermissionForm" method="post">
+          <button type="submit" class="btn btn-danger">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function AddFormAction(actionUrl) {
+    document.getElementById('cancelPermissionForm').action = actionUrl;
+  }
+</script>

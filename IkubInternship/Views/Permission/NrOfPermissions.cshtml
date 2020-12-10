@@ -1,0 +1,22 @@
+﻿@model IkubInternship.DomainModels.PermissionsPerYear
+@{
+    ViewBag.Title = "NrOfPermissions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+  <br />
+  @Html.Partial("_Notifications")
+  @if (Model != null)
+  {
+    <br />
+    <h2 class="font-weight-bolder">Nr of Permissions @Model.Year</h2>
+    <br />
+    <h1>@Model.NrOfPermissions</h1>
+    <br />
+    @Html.ActionLink("Edit", "SetNrOfPermissions", "Permission", null, new { @class="btn btn-lg btn-warning text-white"})
+
+  }
+
+</div>
+
+

@@ -1,0 +1,30 @@
+﻿@model IkubInternship.ViewModels.RefusePermissionViewModel
+
+@{
+    ViewBag.Title = "RefusePermission";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+  <br />
+  <h2 class="font-weight-bolder">Refuse Permission</h2>
+  <br /><br />
+  <form action="/Permission/RefusePermission/@Model.Id?details=@ViewBag.details&manage=@ViewBag.manage" method="post">
+    @Html.HiddenFor(x=>x.Id)
+    <div class="col-md-6">
+      @Html.LabelFor(x => x.ReasonForRefusal, new { @class = "control-label" })
+      @Html.TextAreaFor(x => x.ReasonForRefusal, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x=>x.ReasonForRefusal, null,new { @class="text-danger"})
+    </div>
+    <br />
+    <div class="form-row">
+      <button type="submit" class="btn btn-lg btn-danger" >Refuse</button> &nbsp;&nbsp;
+      @Html.ActionLink("Cancel", "ManagePermissions", "Permission", null, new { @class = "btn btn-lg btn-light" })
+    </div>
+
+
+  </form>
+
+</div>
+
+

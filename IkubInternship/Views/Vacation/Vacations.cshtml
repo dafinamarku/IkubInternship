@@ -1,0 +1,67 @@
+﻿@model IEnumerable<IkubInternship.DomainModels.Event>
+@{
+    ViewBag.Title = "Vacations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+  <br />
+  @Html.Partial("_Notifications")
+  <br />
+  @if (Model != null)
+  {
+    if (Model.Count() == 0)
+    {
+      if (User.IsInRole("HR"))
+      {
+        <a href="/HR/Event/Index" class="btn btn-lg btn-dark"> Create New Event</a>
+      }
+      else
+      {
+        <a class="btn btn-lg btn-outline-dark font-weight-bold btn-light" href="/Home/Index">Return to Home Page</a>
+      }
+      <br />
+      <p class="font-weight-bolder">There is no vacation day for this year.</p>
+    }
+    else
+    {
+      if (User.IsInRole("HR"))
+      {
+        <h2 class="font-weight-bolder">Vacations of @DateTime.Now.Year <a href="/HR/Event/Index" class="btn btn-lg btn-dark float-right"> Create New Event</a></h2>
+      }
+      else
+      {
+        <h2 class="font-weight-bolder">Vacations of @DateTime.Now.Year <a class="btn btn-lg btn-outline-dark font-weight-bold btn-light float-right" href="/Home/Index">Return to Home Page</a></h2>
+
+        
+      }
+      <br /><br />
+      <table class="table table-hover table-bordered">
+        <tr class="bg-danger text-white">
+          <th>@Html.DisplayNameFor(x => x.Title)</th>
+          <th>@Html.DisplayNameFor(x => x.StartDate)</th>
+          <th>@Html.DisplayNameFor(x => x.FinishDate)</th>
+          <th>@Html.DisplayNameFor(x => x.Description)</th>
+        </tr>
+        @foreach (var ev in Model)
+        {
+          <tr>
+            <th>@Html.DisplayFor(x => ev.Title)</th>
+            <td>@Html.DisplayFor(x => ev.StartDate)</td>
+            <td>@Html.DisplayFor(x => ev.FinishDate)</td>
+            @if (ev.Description != null)
+            {
+              <td>@Html.DisplayFor(x => ev.Description)</td>
+            }
+            else
+            {
+              <td>No Description</td>
+            }
+          </tr>
+        }
+      </table>
+    }
+  }
+
+</div>
+
+

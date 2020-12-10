@@ -1,0 +1,52 @@
+﻿@model IEnumerable<IkubInternship.DomainModels.Departament>
+@{
+  ViewBag.Title = "Departaments";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+  <br />
+  @Html.Partial("_Notifications")
+  <br />
+  @Html.ActionLink("Create Departament", "Create", "Departament", new { @class = "btn btn-primary" })
+  <br />
+  <br />
+  <h2 class="font-weight-bolder">Departaments</h2>
+  <br />
+  <br />
+  @Html.Raw(ViewBag.RenderDepartaments)
+  
+</div>
+
+<!--Delete Dep Modal-->
+
+<div class="modal fade" id="deleteDepartamentModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Are you sure?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        By deleting a departament, all employees of this departament will be removed to the Parent Departament( if there is a Parent Departament),
+        otherwise they will be deleted( non permanently).
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <form action="" id="deleteDepartamentForm" method="post">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function AddFormAction(actionUrl) {
+    document.getElementById('deleteDepartamentForm').action = actionUrl;
+  }
+</script>
+
+
